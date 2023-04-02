@@ -15,7 +15,6 @@ def post_create(request):
             messages.success(request, "Sucessfully Created")
             return HttpResponseRedirect(instance.get_absolute_url())
         except Exception as e:
-            messages.error(request, "Not Sucessfully Created")
             form.add_error(None, e)
     context = {
         "form": form,
@@ -36,7 +35,7 @@ def post_list(request):
         "object_list": queryset,
         "title": "List"
     }
-    return render(request, "index.html", context)
+    return render(request, "post_list.html", context)
 
 def post_update(request, id=None):
     instance = get_object_or_404(Post, id=id)
